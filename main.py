@@ -4,9 +4,16 @@ import os
 from langchain_core.output_parsers import StrOutputParser
 from langchain_openai import ChatOpenAI
 from langchain_core.prompts import ChatPromptTemplate
+import logging
+
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
 load_dotenv()
 chave_api = os.getenv("OPENAI_API_KEY")
+if not chave_api:
+    logger.error("Chave da API OpenAI não encontrada no arquivo .env!")
+    raise ValueError("A chave da API OpenAI não foi encontrada no arquivo .env!")
 
 modelo = ChatOpenAI(model="gpt-4o-mini")
 parser = StrOutputParser()
@@ -35,8 +42,14 @@ def traduzir():
     try:
         output = chain.invoke({"texto": texto, "idioma": idioma})
         return jsonify({"traducao": output})
+
+    except ValueError as e:
+        logger.error(f"Erro de valor: {e}")
+        return jsonify({"erro": "Erro de valor! Verifique se os parâmetros estão corretos."}), 400
+
     except Exception as e:
-        return jsonify({"erro": str(e)}), 500
+        logger.error(f"Erro inesperado: {str(e)}")
+        return jsonify({"erro": "Houve um erro ao processar sua solicitação. Tente novamente mais tarde."}), 500
 
 if __name__ == "__main__":
     app.run()
