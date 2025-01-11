@@ -2,10 +2,6 @@
 
 Este é um aplicativo de tradução de textos desenvolvido em **Python** utilizando **Flask** como framework web e **GPT** para processar e gerar as traduções. Com uma interface simples, é possível traduzir textos para qualquer idioma especificado.
 
-## 🖥️ Demonstração
-
-A interface web permite que você insira o texto que deseja traduzir e o idioma de destino. Após enviar, o resultado da tradução será exibido na tela.
-
 ## 🛠️ Tecnologias Utilizadas
 
 - **Python**: Linguagem principal para o backend.
@@ -15,3 +11,9 @@ A interface web permite que você insira o texto que deseja traduzir e o idioma 
 - **Bootstrap**: Para estilizar a interface web.
 - **HTML/CSS**: Para criar e estilizar o frontend.
 - **JavaScript (Fetch API)**: Para interagir com o backend de forma assíncrona.
+
+## 🖥️ Demonstração
+
+A interface web permite que você insira o texto que deseja traduzir e o idioma de destino. Após enviar, o resultado da tradução será exibido na tela.
+
+![Demonstração do Tradutor](static/screenshots/demo.gif)
